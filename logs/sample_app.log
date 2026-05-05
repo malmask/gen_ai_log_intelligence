@@ -1,0 +1,35 @@
+2024-01-15 08:00:01 INFO  [UserService] Application started successfully on port 8080
+2024-01-15 08:00:05 INFO  [UserService] Connected to database at jdbc:mysql://db-host:3306/userdb
+2024-01-15 08:01:12 INFO  [UserService] GET /api/users/42 - 200 OK (12ms)
+2024-01-15 08:01:45 INFO  [UserService] GET /api/users/99 - 200 OK (9ms)
+2024-01-15 08:03:10 WARN  [UserService] Slow query detected: SELECT * FROM users WHERE email=? took 1823ms
+2024-01-15 08:03:11 INFO  [UserService] GET /api/users/101 - 200 OK (1834ms)
+2024-01-15 08:05:00 ERROR [UserService] NullPointerException at UserController.getProfile(UserController.java:87)
+  java.lang.NullPointerException: Cannot invoke "User.getProfile()" because "user" is null
+    at com.example.UserController.getProfile(UserController.java:87)
+    at com.example.UserController.handleRequest(UserController.java:54)
+2024-01-15 08:05:00 ERROR [UserService] GET /api/users/200/profile - 500 Internal Server Error
+2024-01-15 08:05:30 WARN  [UserService] Retry attempt 1/3 for DB connection
+2024-01-15 08:05:35 WARN  [UserService] Retry attempt 2/3 for DB connection
+2024-01-15 08:05:40 ERROR [UserService] Failed to connect to database after 3 retries
+  com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+    at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:828)
+2024-01-15 08:05:41 ERROR [UserService] Circuit breaker OPEN for database pool
+2024-01-15 08:06:00 ERROR [UserService] GET /api/users/201 - 503 Service Unavailable (DB circuit open)
+2024-01-15 08:06:01 ERROR [UserService] GET /api/users/202 - 503 Service Unavailable (DB circuit open)
+2024-01-15 08:06:02 ERROR [UserService] GET /api/users/203 - 503 Service Unavailable (DB circuit open)
+2024-01-15 08:07:00 WARN  [UserService] Memory usage at 87% - approaching heap limit
+2024-01-15 08:07:30 INFO  [UserService] GC overhead: minor GC took 340ms
+2024-01-15 08:08:00 ERROR [UserService] OutOfMemoryError: Java heap space
+  java.lang.OutOfMemoryError: Java heap space
+    at java.util.Arrays.copyOf(Arrays.java:3210)
+    at com.example.UserService.loadAllUsers(UserService.java:203)
+2024-01-15 08:08:01 ERROR [UserService] Application shutting down due to OOM
+2024-01-15 08:10:00 INFO  [UserService] Application restarted
+2024-01-15 08:10:05 INFO  [UserService] Database connection re-established
+2024-01-15 08:10:10 INFO  [UserService] GET /api/users/42 - 200 OK (11ms)
+2024-01-15 08:11:00 WARN  [AuthService] JWT token expired for user_id=55, token_age=3602s
+2024-01-15 08:11:01 ERROR [AuthService] Unauthorized access attempt: GET /api/admin/users - 401
+2024-01-15 08:11:05 WARN  [AuthService] Rate limit exceeded for IP 192.168.1.105 (120 req/min)
+2024-01-15 08:12:00 INFO  [UserService] Scheduled cleanup job started
+2024-01-15 08:12:45 INFO  [UserService] Scheduled cleanup job completed - removed 230 stale sessions
